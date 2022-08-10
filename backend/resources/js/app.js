@@ -6,9 +6,11 @@
 
 require('./bootstrap');
 
+import Vue from "vue";
 window.Vue = require('vue');
 import vuetify from "./vuetify";
 import router from "./router";
+import VueRouter from 'vue-router';
 
 import AppComponent from "./components/AppComponent";
 
@@ -23,13 +25,16 @@ import AppComponent from "./components/AppComponent";
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('app-component', AppComponent);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+Vue.use(VueRouter);
 
 const app = new Vue({
     el: '#app',
@@ -39,3 +44,5 @@ const app = new Vue({
         "app-component":AppComponent,
     }
 });
+
+

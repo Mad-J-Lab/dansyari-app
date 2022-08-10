@@ -1,3 +1,3 @@
 <template>
-    <div>This is a Test Page.</div>
+    <v-btn>テストボタン</v-btn>
 </template>

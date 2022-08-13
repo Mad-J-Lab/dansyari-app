@@ -4,7 +4,7 @@
         use Illuminate\Database\Schema\Blueprint;
         use Illuminate\Database\Migrations\Migration;
         
-        class CreateCategoryTable extends Migration
+        class CreateCategoriesTable extends Migration
         {
             /**
              * Run the migrations.
@@ -13,7 +13,7 @@
              */
             public function up()
             {
-                Schema::create("category", function (Blueprint $table) {
+                Schema::create("categories", function (Blueprint $table) {
 
 						$table->bigIncrements('id');
 						$table->string('name')->nullable();
@@ -22,9 +22,9 @@
 
 
 						// ----------------------------------------------------
-						// -- SELECT [category]--
+						// -- SELECT [categories]--
 						// ----------------------------------------------------
-						// $query = DB::table("category")
+						// $query = DB::table("categories")
 						// ->get();
 						// dd($query); //For checking
 
@@ -40,7 +40,7 @@
              */
             public function down()
             {
-                Schema::dropIfExists("category");
+                Schema::dropIfExists("categories");
             }
         }
     

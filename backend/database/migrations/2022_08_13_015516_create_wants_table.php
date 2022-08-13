@@ -30,7 +30,7 @@
                     //*********************************
                     // Foreign KEY [ Uncomment if you want to use!! ]
                     //*********************************
-                        //$table->foreign("category_id")->references("id")->on("category");
+                        //$table->foreign("category_id")->references("id")->on("categories");
 
 
 
@@ -38,7 +38,7 @@
 						// -- SELECT [wants]--
 						// ----------------------------------------------------
 						// $query = DB::table("wants")
-						// ->leftJoin("category","category.id", "=", "wants.category_id")
+						// ->leftJoin("categories","categories.id", "=", "wants.category_id")
 						// ->get();
 						// dd($query); //For checking
 

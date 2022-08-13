@@ -8,7 +8,7 @@ const router = new VueRouter({
     mode:'history',
     routes:[
         {
-            path: '/category',
+            path: '/categories',
             component: Category
         }
     ]

@@ -1,7 +1,6 @@
 <template>
     <div>
-        <tr v-for="(category, index) in categories" :key="index">
-            <th scope="row">{{ cagegory.id }}</th>
+        <tr v-for="category in categories">
             <td>{{ category.name }}</td>
         </tr>
     </div>
@@ -9,10 +8,10 @@
 
 <script>
 export default {
-    data: function () {
-        return {
-            categories: []
-        }
+    data(){
+        return{
+            categories:[],
+        };
     },
     methods: {
         getCategories() {

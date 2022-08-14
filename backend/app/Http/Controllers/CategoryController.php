@@ -10,4 +10,8 @@ class CategoryController extends Controller
     public function index(){
         return Category::all();
     }
+    public function store(Request $request){
+        return Category::create($reqest->all());
+    }
+
 }

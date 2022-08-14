@@ -1911,7 +1911,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categories: []
+      categories: [],
+      category: {
+        name: ""
+      },
+      dialog: false
     };
   },
   methods: {
@@ -1920,6 +1924,21 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/categories').then(function (res) {
         _this.categories = res.data;
+      });
+    },
+    submit: function submit() {
+      var _this2 = this;
+
+      axios.post('api/categories', this.category).then(function (res) {
+        console.log(res);
+
+        _this2.$router.push({
+          name: 'category.list'
+        });
+
+        _this2.dialog = false;
+      })["catch"](function (err) {
+        console.log(err);
       });
     }
   },
@@ -2015,7 +2034,75 @@ var render = function render() {
       link: "",
       color: "grey lighten-4"
     }
-  }, [_c("v-list-item-content", [_c("v-list-item-title", [_vm._v("\n                                    Refresh\n                                ")])], 1)], 1)], 2)], 1)], 1), _vm._v(" "), _c("v-col", [_c("v-sheet", {
+  }, [_c("v-list-item-content", [_c("v-list-item-title", [_c("v-dialog", {
+    attrs: {
+      persistent: "",
+      "max-width": "600px"
+    },
+    scopedSlots: _vm._u([{
+      key: "activator",
+      fn: function fn(_ref) {
+        var on = _ref.on,
+            attrs = _ref.attrs;
+        return [_c("v-btn", _vm._g(_vm._b({
+          attrs: {
+            color: "gray",
+            dark: ""
+          }
+        }, "v-btn", attrs, false), on), [_vm._v("\n                                                カテゴリ追加\n                                            ")])];
+      }
+    }]),
+    model: {
+      value: _vm.dialog,
+      callback: function callback($$v) {
+        _vm.dialog = $$v;
+      },
+      expression: "dialog"
+    }
+  }, [_vm._v(" "), _c("v-card", [_c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submit.apply(null, arguments);
+      }
+    }
+  }, [_c("v-card-title", [_c("span", {
+    staticClass: "text-h5"
+  }, [_vm._v("カテゴリ追加")])]), _vm._v(" "), _c("v-card-text", [_c("v-container", [_c("v-row", [_c("v-col", {
+    attrs: {
+      cols: "12"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      label: "カテゴリ名",
+      required: ""
+    },
+    model: {
+      value: _vm.category.name,
+      callback: function callback($$v) {
+        _vm.$set(_vm.category, "name", $$v);
+      },
+      expression: "category.name"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "gray",
+      text: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.dialog = false;
+      }
+    }
+  }, [_vm._v("\n                                                        閉じる\n                                                    ")]), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "gray",
+      text: ""
+    },
+    on: {
+      click: _vm.submit
+    }
+  }, [_vm._v("\n                                                        追加\n                                                    ")])], 1)], 1)])], 1)], 1)], 1)], 1)], 2)], 1)], 1), _vm._v(" "), _c("v-col", [_c("v-sheet", {
     attrs: {
       "min-height": "70vh",
       rounded: "lg"
@@ -81596,6 +81683,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/categories',
+    name: 'category.list',
     component: _components_Category_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }]
 });

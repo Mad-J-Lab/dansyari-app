@@ -9,6 +9,7 @@ const router = new VueRouter({
     routes:[
         {
             path: '/categories',
+            name: 'category.list',
             component: Category
         }
     ]

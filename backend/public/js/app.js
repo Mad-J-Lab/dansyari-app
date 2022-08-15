@@ -1929,8 +1929,11 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this2 = this;
 
-      axios.post('api/categories', this.category).then(function (res) {
+      axios.post('api/categories', {
+        name: this.category.name
+      }).then(function (res) {
         console.log(res);
+        _this2.categories = res.data.categories;
 
         _this2.$router.push({
           name: 'category.list'

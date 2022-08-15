@@ -11,7 +11,8 @@ class CategoryController extends Controller
         return Category::all();
     }
     public function store(Request $request){
-        return Category::create($reqest->all());
+        Category::create([
+            'name' => $request->name,
+        ]);
     }
-
 }

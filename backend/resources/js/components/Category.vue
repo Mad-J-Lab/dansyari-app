@@ -58,7 +58,6 @@
                         </v-list>
                     </v-sheet>
                 </v-col>
-
                 <v-col>
                     <v-sheet min-height="70vh" rounded="lg">
                         <!--  -->
@@ -88,9 +87,12 @@ export default {
                 });
         },
         submit() {
-            axios.post('api/categories', this.category)
+            axios.post('api/categories', {
+                name: this.category.name,
+            })
                 .then((res) => {
                     console.log(res);
+                    this.categories = res.data.categories;
                     this.$router.push({ name: 'category.list' });
                     this.dialog = false;
                 })

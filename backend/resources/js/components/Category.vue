@@ -93,7 +93,8 @@ export default {
                 .then((res) => {
                     console.log(res);
                     this.categories = res.data.categories;
-                    this.$router.push({ name: 'category.list' });
+                    this.getCategories();
+                    this.category.name = "";
                     this.dialog = false;
                 })
                 .catch((err) => {

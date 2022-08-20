@@ -1935,10 +1935,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(res);
         _this2.categories = res.data.categories;
 
-        _this2.$router.push({
-          name: 'category.list'
-        });
+        _this2.getCategories();
 
+        _this2.category.name = "";
         _this2.dialog = false;
       })["catch"](function (err) {
         console.log(err);

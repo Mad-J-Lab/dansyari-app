@@ -5,10 +5,13 @@
                 <v-col cols="2">
                     <v-sheet rounded="lg">
                         <v-list color="transparent">
-                            <v-list-item v-for="category in categories" link>
+                            <v-list-item v-for="category in categories">
                                 <v-list-item-content>
                                     <v-list-item-title>
-                                        {{ category.name }}
+                                        <router-link
+                                            v-bind:to="{ name: 'category.edit', params: { categoryId: category.id } }">
+                                            {{ category.name }}
+                                        </router-link>
                                     </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
@@ -69,13 +72,16 @@
 </template>
 
 <script>
+import CategoryEdit from "./CategoryEditComponent.vue";
+
 export default {
+    conponents: {
+        CategoryEdit
+    },
     data() {
         return {
             categories: [],
-            category: {
-                name: "",
-            },
+            category: {},
             dialog: false,
         };
     },
@@ -100,8 +106,7 @@ export default {
                 .catch((err) => {
                     console.log(err);
                 });
-        }
-
+        },
     },
     mounted() {
         this.getCategories();

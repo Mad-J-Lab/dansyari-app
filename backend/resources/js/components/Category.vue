@@ -7,12 +7,7 @@
                         <v-list color="transparent">
                             <v-list-item v-for="category in categories">
                                 <v-list-item-content>
-                                    <v-list-item-title>
-                                        <router-link
-                                            v-bind:to="{ name: 'category.edit', params: { categoryId: category.id } }">
-                                            {{ category.name }}
-                                        </router-link>
-                                    </v-list-item-title>
+                                    <CategoryEditComponent :category="category"></CategoryEditComponent>
                                 </v-list-item-content>
                             </v-list-item>
 
@@ -72,11 +67,12 @@
 </template>
 
 <script>
-import CategoryEdit from "./CategoryEditComponent.vue";
+import CategoryEditComponent from "./CategoryEditComponent.vue";
+
 
 export default {
-    conponents: {
-        CategoryEdit
+    components: {
+        CategoryEditComponent
     },
     data() {
         return {

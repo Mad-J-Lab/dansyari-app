@@ -22,4 +22,8 @@ class CategoryController extends Controller
         $category->update($request->all());
         return $category;
     }
+    public function destroy(Category $category){
+        $category -> delete();
+        return $category;
+    }
 }

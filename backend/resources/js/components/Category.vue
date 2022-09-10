@@ -7,7 +7,7 @@
                         <v-list color="transparent">
                             <v-list-item v-for="category in categories">
                                 <v-list-item-content>
-                                    <CategoryEditComponent :category="category"></CategoryEditComponent>
+                                    <CategoryEditComponent :category="category" @getCategoriesFromChild="getCategories"></CategoryEditComponent>
                                 </v-list-item-content>
                             </v-list-item>
 

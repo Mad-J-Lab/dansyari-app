@@ -18,6 +18,11 @@ const router = new VueRouter({
             name: 'category.edit',
             props:true,
         },
+        {
+            path: '/categories/:categoryId',
+            name: 'category.delete',
+            props:true,
+        },
     ]
 })
 

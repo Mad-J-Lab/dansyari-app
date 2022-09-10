@@ -1967,16 +1967,26 @@ __webpack_require__.r(__webpack_exports__);
   props: ['category'],
   data: function data() {
     return {
-      dialog: false
+      dialog: false,
+      categoryValue: this.category
     };
   },
   methods: {
     update: function update() {
       var _this = this;
 
-      axios.put('api/categories/' + this.categoryId, this.category).then(function (res) {
-        _this.category = res.data.category;
+      axios.put('api/categories/' + this.category.id, {
+        name: this.category.name
+      }).then(function (res) {
+        _this.categoryValue = res.data.category;
         _this.dialog = false;
+      });
+    },
+    deleteCategory: function deleteCategory() {
+      var _this2 = this;
+
+      axios["delete"]('api/categories/' + this.category.id).then(function (res) {
+        _this2.$emit('getCategoriesFromChild');
       });
     }
   }
@@ -2060,6 +2070,9 @@ var render = function render() {
     return _c("v-list-item", [_c("v-list-item-content", [_c("CategoryEditComponent", {
       attrs: {
         category: category
+      },
+      on: {
+        getCategoriesFromChild: _vm.getCategories
       }
     })], 1)], 1);
   }), _vm._v(" "), _c("v-divider", {
@@ -2229,7 +2242,15 @@ var render = function render() {
     on: {
       click: _vm.update
     }
-  }, [_vm._v("\n                    変更\n                ")])], 1)], 1)])], 1);
+  }, [_vm._v("\n                    変更\n                ")]), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "gray",
+      text: ""
+    },
+    on: {
+      click: _vm.deleteCategory
+    }
+  }, [_vm._v("\n                    削除\n                ")])], 1)], 1)])], 1);
 };
 
 var staticRenderFns = [];
@@ -81880,6 +81901,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/categories/:categoryId/edit',
     name: 'category.edit',
+    props: true
+  }, {
+    path: '/categories/:categoryId',
+    name: 'category.delete',
     props: true
   }]
 });

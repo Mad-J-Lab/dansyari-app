@@ -28,6 +28,9 @@
                     <v-btn color="gray" text @click="update">
                         変更
                     </v-btn>
+                    <v-btn color="gray" text @click="deleteCategory">
+                        削除
+                    </v-btn>
                 </v-card-actions>
             </form>
         </v-card>
@@ -40,15 +43,22 @@ export default {
     data() {
         return {
             dialog: false,
+            categoryValue: this.category,
         }
     },
     methods: {
         update() {
-            axios.put('api/categories/' + this.categoryId, this.category)
-                .then((res) => {
-                    this.category = res.data.category;
-                    this.dialog = false;
-                });
+            axios.put('api/categories/' + this.category.id, {
+                name: this.category.name
+            }).then((res) => {
+                this.categoryValue = res.data.category;
+                this.dialog = false;
+            });
+        },
+        deleteCategory() {
+            axios.delete('api/categories/' + this.category.id).then((res) => {
+                this.$emit('getCategoriesFromChild')
+            })
         }
     },
 }

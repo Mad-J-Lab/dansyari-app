@@ -4,7 +4,7 @@
         use Illuminate\Database\Schema\Blueprint;
         use Illuminate\Database\Migrations\Migration;
         
-        class CreateTestsTable extends Migration
+        class CreateCategoriesTable extends Migration
         {
             /**
              * Run the migrations.
@@ -13,11 +13,22 @@
              */
             public function up()
             {
-                Schema::create("tests", function (Blueprint $table) {
+                Schema::create("categories", function (Blueprint $table) {
 
 						$table->bigIncrements('id');
 						$table->string('name')->nullable();
 						$table->timestamps();
+
+
+
+						// ----------------------------------------------------
+						// -- SELECT [categories]--
+						// ----------------------------------------------------
+						// $query = DB::table("categories")
+						// ->get();
+						// dd($query); //For checking
+
+
 
                 });
             }
@@ -29,7 +40,7 @@
              */
             public function down()
             {
-                Schema::dropIfExists("tests");
+                Schema::dropIfExists("categories");
             }
         }
     

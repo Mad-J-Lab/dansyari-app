@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\WantController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,4 @@ Route::put('/categories/{category}', 'CategoryController@update');
 Route::delete('/categories/{category}', 'CategoryController@destroy');
 
 
-
+Route::get('/wants', 'WantController@category');

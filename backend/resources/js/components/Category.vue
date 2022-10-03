@@ -5,9 +5,10 @@
                 <v-col cols="2">
                     <v-sheet rounded="lg">
                         <v-list color="transparent">
-                            <v-list-item v-for="category in categories">
+                            <v-list-item v-for="category in categories" :key="category.id">
                                 <v-list-item-content>
-                                    <CategoryEditComponent :category="category" @getCategoriesFromChild="getCategories"></CategoryEditComponent>
+                                    <CategoryEditComponent :category="category" @getCategoriesFromChild="getCategories">
+                                    </CategoryEditComponent>
                                 </v-list-item-content>
                             </v-list-item>
 
@@ -58,7 +59,7 @@
                 </v-col>
                 <v-col>
                     <v-sheet min-height="70vh" rounded="lg">
-                        <!--  -->
+                        <router-view></router-view>
                     </v-sheet>
                 </v-col>
             </v-row>
@@ -69,10 +70,9 @@
 <script>
 import CategoryEditComponent from "./CategoryEditComponent.vue";
 
-
 export default {
     components: {
-        CategoryEditComponent
+        CategoryEditComponent,
     },
     data() {
         return {
@@ -96,6 +96,7 @@ export default {
                     console.log(res);
                     this.categories = res.data.categories;
                     this.getCategories();
+                    // 表示側のみ変える（配列から除く）
                     this.category.name = "";
                     this.dialog = false;
                 })

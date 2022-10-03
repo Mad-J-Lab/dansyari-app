@@ -1,8 +1,9 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-            <v-list-item-title v-bind="attrs" v-on="on">
+            <v-list-item-title>
                 {{ category.name }}
+                <v-btn color="gray" dark v-bind="attrs" v-on="on">編集</v-btn>
             </v-list-item-title>
         </template>
         <v-card>
@@ -56,8 +57,9 @@ export default {
             });
         },
         deleteCategory() {
-            axios.delete('api/categories/' + this.category.id).then((res) => {
+            axios.delete(`api/categories/${this.category.id}`).then((res) => {
                 this.$emit('getCategoriesFromChild')
+                // 表示側のみ変える
             })
         }
     },

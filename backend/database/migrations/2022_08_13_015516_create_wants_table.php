@@ -22,7 +22,6 @@
 						$table->integer('number')->nullable();
 						$table->integer('amount')->nullable();
 						$table->string('place')->nullable();
-						$table->datetime('purchase_date')->nullable();
 						$table->string('purchase_from')->nullable();
 						$table->timestamps();
 						
@@ -30,7 +29,7 @@
                     //*********************************
                     // Foreign KEY [ Uncomment if you want to use!! ]
                     //*********************************
-                        //$table->foreign("category_id")->references("id")->on("categories");
+                        $table->foreign("category_id")->references("id")->on("categories");
 
 
 

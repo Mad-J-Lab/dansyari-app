@@ -12,4 +12,7 @@ class Category extends Model
     protected $guarded = [
         'id',
     ];
+    public function wants(){
+        return $this->hasMany('App\Want');
+    }
 };

@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Category from './components/Category.vue';
-//import CategoryEditComponent from './components/CategoryEditComponent';
+import Want from './components/Want.vue';
+
 
 Vue.use(VueRouter);
 
@@ -11,17 +12,15 @@ const router = new VueRouter({
         {
             path: '/categories',
             name: 'category.list',
-            component: Category
-        },
-        {
-            path: '/categories/:categoryId/edit',
-            name: 'category.edit',
-            props:true,
-        },
-        {
-            path: '/categories/:categoryId',
-            name: 'category.delete',
-            props:true,
+            component: Category,
+            children:[
+                {
+                    path: '/wants/:category',
+                    name: 'want.list',
+                    component: Want,
+                    props:true,
+                },
+            ]
         },
     ]
 })

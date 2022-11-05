@@ -16,8 +16,15 @@
                 Schema::create("category_user", function (Blueprint $table) {
 
 						$table->increments('id');
-						$table->integer('category_id');
-						$table->integer('user_id');
+						$table->integer('category_id')->unsigned();
+						$table->integer('user_id')->unsigned();
+						
+
+                    //*********************************
+                    // Foreign KEY [ Uncomment if you want to use!! ]
+                    //*********************************
+                        $table->foreign("category_id")->references("id")->on("categories");
+						$table->foreign("user_id")->references("id")->on("users");
 
 
 
@@ -25,6 +32,8 @@
 						// -- SELECT [category_user]--
 						// ----------------------------------------------------
 						// $query = DB::table("category_user")
+						// ->leftJoin("categories","categories.id", "=", "category_user.category_id")
+						// ->leftJoin("users","users.id", "=", "category_user.user_id")
 						// ->get();
 						// dd($query); //For checking
 

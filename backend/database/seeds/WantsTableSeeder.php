@@ -19,6 +19,7 @@ class WantsTableSeeder extends Seeder
             'amount'=>'3000',
             'place'=>'ラック',
             'purchase_from'=>'UNIQLO',
+            'image_path'=>'',
         ];
         DB::table('wants')->insert($param);
 

@@ -8,7 +8,8 @@ use App\Category;
 class CategoryController extends Controller
 {
     public function index(){
-        return Category::all();
+        $categories = Category::with('user')->get();
+        return $categories;
     }
     public function store(Request $request){
         Category::create([

@@ -2029,7 +2029,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       wants: [],
-      want: {}
+      want: {},
+      dialog: false,
+      fileInfo: '' // image_path: this.want.image_path
+
     };
   },
   methods: {
@@ -2038,7 +2041,20 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("api/wants").then(function (res) {
         _this.wants = res.data;
-        console.log(res.data);
+        console.log(res);
+      });
+    },
+    fileSelected: function fileSelected(event) {
+      this.fileInfo = event.target.files[0];
+    },
+    upload: function upload() {
+      var formData = new FormData();
+      formData.append('item_image', this.fileInfo);
+      formData.append('name', this.want.name);
+      axios.post("api/wants", formData).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
       });
     }
   },
@@ -2227,7 +2243,9 @@ var render = function render() {
       fn: function fn(_ref) {
         var on = _ref.on,
             attrs = _ref.attrs;
-        return [_c("v-list-item-title", [_vm._v("\n            " + _vm._s(_vm.category.name) + "\n            "), _c("v-btn", _vm._g(_vm._b({
+        return [_c("v-list-item-title", {
+          staticClass: "d-flex justify-space-between"
+        }, [_c("p", [_vm._v("\n                " + _vm._s(_vm.category.name) + "\n            ")]), _vm._v(" "), _c("v-btn", _vm._g(_vm._b({
           attrs: {
             color: "gray",
             dark: ""
@@ -2400,20 +2418,99 @@ var render = function render() {
       staticClass: "text-overline mb-4"
     }), _vm._v(" "), _c("v-list-item-title", {
       staticClass: "text-h6 mb-1"
-    }, [_vm._v("\n                                    " + _vm._s(want.name) + "\n                                ")]), _vm._v(" "), _c("v-list-item-subtitle")], 1), _vm._v(" "), _c("v-list-item-avatar", {
+    }, [_vm._v("\n\n                                    " + _vm._s(want.name) + "\n\n                                ")]), _vm._v(" "), _c("v-list-item-subtitle")], 1), _vm._v(" "), _c("v-list-item-avatar", {
       attrs: {
         tile: "",
         size: "80",
         color: "grey"
       }
-    })], 1), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
+    }, [_c("img", {
+      attrs: {
+        src: want.image_path,
+        alt: ""
+      }
+    })])], 1), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
       attrs: {
         outlined: "",
         rounded: "",
         text: ""
       }
     }, [_vm._v("\n                                Button\n                            ")])], 1)], 1)], 1)], 1)], 1);
-  }), 1)], 1);
+  }), 1), _vm._v(" "), _c("v-dialog", {
+    attrs: {
+      persistent: "",
+      "max-width": "600px"
+    },
+    scopedSlots: _vm._u([{
+      key: "activator",
+      fn: function fn(_ref) {
+        var on = _ref.on,
+            attrs = _ref.attrs;
+        return [_c("v-btn", _vm._g(_vm._b({
+          attrs: {
+            color: "gray",
+            dark: ""
+          }
+        }, "v-btn", attrs, false), on), [_vm._v("\n                アイテム追加\n            ")])];
+      }
+    }]),
+    model: {
+      value: _vm.dialog,
+      callback: function callback($$v) {
+        _vm.dialog = $$v;
+      },
+      expression: "dialog"
+    }
+  }, [_vm._v(" "), _c("v-card", [_c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+      }
+    }
+  }, [_c("v-card-title", [_c("span", {
+    staticClass: "text-h5"
+  }, [_vm._v("アイテム追加")])]), _vm._v(" "), _c("v-card-text", [_c("v-container", [_c("v-row", [_c("v-col", {
+    attrs: {
+      cols: "12"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      label: "アイテム名",
+      required: ""
+    },
+    model: {
+      value: _vm.want.name,
+      callback: function callback($$v) {
+        _vm.$set(_vm.want, "name", $$v);
+      },
+      expression: "want.name"
+    }
+  }), _vm._v(" "), _c("input", {
+    attrs: {
+      type: "file"
+    },
+    on: {
+      change: _vm.fileSelected
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "gray",
+      text: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.dialog = false;
+      }
+    }
+  }, [_vm._v("\n                        閉じる\n                    ")]), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "gray",
+      text: ""
+    },
+    on: {
+      click: _vm.upload
+    }
+  }, [_vm._v("\n                        追加\n                    ")])], 1)], 1)])], 1)], 1);
 };
 
 var staticRenderFns = [];

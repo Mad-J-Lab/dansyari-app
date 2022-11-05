@@ -15,4 +15,7 @@ class Category extends Model
     public function wants(){
         return $this->hasMany('App\Want');
     }
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
 };

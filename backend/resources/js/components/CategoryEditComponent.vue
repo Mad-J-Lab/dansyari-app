@@ -1,8 +1,10 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-            <v-list-item-title>
-                {{ category.name }}
+            <v-list-item-title class="d-flex justify-space-between">
+                <p>
+                    {{ category.name }}
+                </p>
                 <v-btn color="gray" dark v-bind="attrs" v-on="on">編集</v-btn>
             </v-list-item-title>
         </template>

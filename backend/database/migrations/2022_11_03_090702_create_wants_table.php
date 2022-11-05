@@ -18,8 +18,9 @@
 						$table->bigIncrements('id');
 						$table->string('name')->nullable();
 						$table->bigInteger('category_id')->unsigned();
-						$table->string('category_name')->nullable();
+						$table->string('image_path')->nullable();
 						$table->integer('number')->nullable();
+						$table->string('category_name')->nullable();
 						$table->integer('amount')->nullable();
 						$table->string('place')->nullable();
 						$table->string('purchase_from')->nullable();
@@ -29,7 +30,7 @@
                     //*********************************
                     // Foreign KEY [ Uncomment if you want to use!! ]
                     //*********************************
-                        $table->foreign("category_id")->references("id")->on("categories");
+                        //$table->foreign("category_id")->references("id")->on("categories");
 
 
 

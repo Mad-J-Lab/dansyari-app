@@ -12,12 +12,15 @@
 
                                     </div>
                                     <v-list-item-title class="text-h6 mb-1">
+
                                         {{want.name}}
+
                                     </v-list-item-title>
                                     <v-list-item-subtitle></v-list-item-subtitle>
                                 </v-list-item-content>
 
-                                <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+                                <v-list-item-avatar tile size="80" color="grey"><img :src="want.image_path" alt="">
+                                </v-list-item-avatar>
                             </v-list-item>
                             <v-card-actions>
                                 <v-btn outlined rounded text>
@@ -29,6 +32,40 @@
                 </v-list-item>
             </v-col>
         </v-list-item-group>
+        <v-dialog v-model="dialog" persistent max-width="600px">
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn color="gray" dark v-bind="attrs" v-on="on">
+                    アイテム追加
+                </v-btn>
+            </template>
+            <v-card>
+                <form @submit.prevent="">
+                    <v-card-title>
+                        <span class="text-h5">アイテム追加</span>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-container>
+                            <v-row>
+                                <v-col cols="12">
+                                    <v-text-field v-model="want.name" label="アイテム名" required>
+                                    </v-text-field>
+                                    <input type="file" @change="fileSelected">
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="gray" text @click="dialog = false">
+                            閉じる
+                        </v-btn>
+                        <v-btn color="gray" text @click="upload">
+                            追加
+                        </v-btn>
+                    </v-card-actions>
+                </form>
+            </v-card>
+        </v-dialog>
 
     </div>
 </template>
@@ -40,6 +77,9 @@ export default {
         return {
             wants: [],
             want: {},
+            dialog: false,
+            fileInfo: '',
+            // image_path: this.want.image_path
         }
     },
     methods: {
@@ -47,9 +87,25 @@ export default {
             axios.get(`api/wants`)
                 .then((res) => {
                     this.wants = res.data;
-                    console.log(res.data);
+                    console.log(res);
                 });
         },
+        fileSelected(event) {
+            this.fileInfo = event.target.files[0]
+        },
+        upload() {
+            const formData = new FormData()
+            formData.append('item_image', this.fileInfo)
+            formData.append('name', this.want.name)
+            axios
+                .post("api/wants", formData)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     },
     mounted() {
         this.getWants();

@@ -1935,11 +1935,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('api/categories', {
         name: this.category.name
       }).then(function (res) {
-        console.log(res);
         _this2.categories = res.data.categories;
 
-        _this2.getCategories(); // 表示側のみ変える（配列から除く）
-
+        _this2.categories.push(_this2.category);
 
         _this2.category.name = "";
         _this2.dialog = false;

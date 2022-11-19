@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,5 +71,17 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    protected function registered(Request $request, $user)
+    {
+        $init_categories=[
+            ['name' => 'ファッション','user_id'=>$user->id,],
+            ['name' => '家具','user_id'=>$user->id,],
+            ['name' => '家電','user_id'=>$user->id,],
+            ['name' => '書籍','user_id'=>$user->id,],
+            ['name' => 'インテリア','user_id'=>$user->id,],
+            ['name' => '日用品','user_id'=>$user->id,],
+        ];
+        Category::insert($init_categories);
     }
 }

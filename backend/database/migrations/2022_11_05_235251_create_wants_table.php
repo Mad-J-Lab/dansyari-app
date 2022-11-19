@@ -25,7 +25,7 @@
 						$table->string('place')->nullable();
 						$table->string('purchase_from')->nullable();
 						$table->timestamps();
-						//$table->foreign("category_id")->references("id")->on("categories");
+						$table->foreign("category_id")->references("id")->on("categories");
 
 
 

@@ -93,10 +93,8 @@ export default {
                 name: this.category.name,
             })
                 .then((res) => {
-                    console.log(res);
                     this.categories = res.data.categories;
-                    this.getCategories();
-                    // 表示側のみ変える（配列から除く）
+                    this.categories.push(this.category);
                     this.category.name = "";
                     this.dialog = false;
                 })

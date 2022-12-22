@@ -66,5 +66,16 @@ class WantsTableSeeder extends Seeder
             'purchase_from'=>'無印良品',
         ];
         DB::table('wants')->insert($param);
+
+        $param = [
+            'name' => 'サーキュレーター',
+            'category_id'=>'2',
+            'category_name'=>'家電',
+            'number'=>'1',
+            'amount'=>'5000',
+            'place'=>'タンス',
+            'purchase_from'=>'無印良品',
+        ];
+        DB::table('wants')->insert($param);
     }
 }

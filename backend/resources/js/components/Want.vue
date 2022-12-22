@@ -13,7 +13,7 @@
                                     </div>
                                     <v-list-item-title class="text-h6 mb-1">
 
-                                        {{want.name}}
+                                        {{ want.name }}
 
                                     </v-list-item-title>
                                     <v-list-item-subtitle></v-list-item-subtitle>
@@ -77,6 +77,7 @@ export default {
         return {
             wants: [],
             want: {},
+            id: this.$route.params.id,
             dialog: false,
             fileInfo: '',
             // image_path: this.want.image_path
@@ -84,10 +85,9 @@ export default {
     },
     methods: {
         getWants() {
-            axios.get(`api/wants`)
+            axios.get('api/categories/wants/' + this.id)
                 .then((res) => {
                     this.wants = res.data;
-                    console.log(res);
                 });
         },
         fileSelected(event) {
@@ -109,6 +109,15 @@ export default {
     },
     mounted() {
         this.getWants();
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+        const id = to.params.id;
+        axios.get('api/categories/wants/' + id)
+            .then((res) => {
+                this.wants = res.data;
+            });
+        next()
+    },
+
 }
 </script>

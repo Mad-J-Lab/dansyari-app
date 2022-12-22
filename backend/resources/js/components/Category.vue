@@ -93,8 +93,7 @@ export default {
                 name: this.category.name,
             })
                 .then((res) => {
-                    this.categories = res.data.categories;
-                    this.categories.push(this.category);
+                    this.categories.push(res.data);
                     this.category.name = "";
                     this.dialog = false;
                 })
@@ -105,6 +104,6 @@ export default {
     },
     mounted() {
         this.getCategories();
-    }
+    },
 }
 </script>

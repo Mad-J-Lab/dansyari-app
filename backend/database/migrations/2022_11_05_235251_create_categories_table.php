@@ -18,7 +18,6 @@
 						$table->bigIncrements('id');
 						$table->string('name')->nullable();
 						$table->timestamps();
-
 						$table->bigInteger('user_id')->unsigned();
 						
 

@@ -12,6 +12,12 @@
 */
 Auth::routes();
 
+Route::prefix('api')->group(function() {
+    Route::get('/categories', 'CategoryController@index');
+    Route::post('/categories', 'CategoryController@store');
+
+});
+
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');

@@ -3,7 +3,9 @@
         <template v-slot:activator="{ on, attrs }">
             <v-list-item-title class="d-flex justify-space-between">
                 <p>
-                    {{ category.name }}
+                    <router-link v-bind:to="{ name: 'want.list', params: { id: category.id } }">
+                        {{ category.name }}
+                    </router-link>
                 </p>
                 <v-btn color="gray" dark v-bind="attrs" v-on="on">編集</v-btn>
             </v-list-item-title>
@@ -50,6 +52,7 @@ export default {
         }
     },
     methods: {
+
         update() {
             axios.put('api/categories/' + this.category.id, {
                 name: this.category.name
@@ -65,5 +68,6 @@ export default {
             })
         }
     },
+
 }
 </script>

@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index(){
-        return Category::all();
-        // $categories = Category::with('user')->get();
-        // return $categories;
+        $categories=Category::where('user_id', Auth::user()->id)->get();
+        return $categories;
     }
     public function store(Request $request){
-        Category::create([
-            'name' => $request->name,
-        ]);
+        // \Log::info(Auth::id());
+        $category=new Category;
+        $category->user_id=Auth::id();
+        $category->name=$request->name;
+        $category->save();
+        return $category;
     }
     public function show(Category $category){
         return $category;
@@ -25,7 +28,7 @@ class CategoryController extends Controller
         return $category;
     }
     public function destroy(Category $category){
-        $category -> delete();
+        $category->delete();
         return $category;
     }
 }

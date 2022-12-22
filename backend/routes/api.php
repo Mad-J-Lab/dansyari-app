@@ -17,10 +17,9 @@ use App\Http\Controllers\WantController;
 */
 
 
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/categories', 'CategoryController@index');
 Route::post('/categories', 'CategoryController@store');
@@ -29,5 +28,7 @@ Route::put('/categories/{category}', 'CategoryController@update');
 Route::delete('/categories/{category}', 'CategoryController@destroy');
 
 
-Route::get('/wants', 'WantController@category');
+Route::get('/categories/wants/{id}', 'WantController@category');
 Route::post('/wants', 'WantController@store');
+
+Route::get('/rules','RuleController@index');

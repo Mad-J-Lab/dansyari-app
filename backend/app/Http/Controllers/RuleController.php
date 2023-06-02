@@ -13,6 +13,15 @@ class RuleController extends Controller
         return $categories;
     }
 
+    public function category($categoryId){
+        $category=Category::with('rules')->find($categoryId);
+        return $category;
+    }
+    public function update(Request $request, Rule $rule){
+        $rule->update($request->all());
+        return $rule;
+    }
+
     public function store(Request $request){
         Rule::create([
             'text' => $request->text,

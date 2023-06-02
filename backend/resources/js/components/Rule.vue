@@ -15,6 +15,7 @@
                             <v-col>
                                 <h1>Rules</h1>
                                 <v-list-item class="with" v-for="category in categories" :key="category.id">
+                                    <div v-for="rule in category.rules">{{ rule.text }}</div>
                                     <v-list-item-content>
                                         <v-card class="mx-auto" outlined>
                                             <v-list-item three-line>

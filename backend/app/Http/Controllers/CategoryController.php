@@ -23,6 +23,12 @@ class CategoryController extends Controller
     public function show(Category $category){
         return $category;
     }
+//     public function show($categoryId)
+// {
+//       $category = Category::find($categoryId);
+//        return $category;
+// }
+// を簡略化した書き方
     public function update(Request $request, Category $category){
         $category->update($request->all());
         return $category;

@@ -18,6 +18,7 @@
 						$table->increments('id');
 						$table->bigInteger('category_id')->unsigned();
 						$table->string('text')->nullable();
+						$table->timestamps();
 						$table->foreign("category_id")->references("id")->on("categories");
 
 

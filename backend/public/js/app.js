@@ -2265,11 +2265,14 @@ __webpack_require__.r(__webpack_exports__);
       this.fileInfo = event.target.files[0];
     },
     upload: function upload() {
+      var _this2 = this;
+
       var formData = new FormData();
       formData.append('item_image', this.fileInfo);
       formData.append('name', this.want.name);
       axios.post("api/wants", formData).then(function (res) {
-        console.log(res);
+        // console.log(res);
+        _this2.dialog = false;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2279,11 +2282,11 @@ __webpack_require__.r(__webpack_exports__);
     this.getWants();
   },
   beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
-    var _this2 = this;
+    var _this3 = this;
 
     var id = to.params.id;
     axios.get('api/categories/wants/' + id).then(function (res) {
-      _this2.wants = res.data;
+      _this3.wants = res.data;
     });
     next();
   }

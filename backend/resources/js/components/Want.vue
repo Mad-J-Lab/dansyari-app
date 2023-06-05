@@ -100,7 +100,8 @@ export default {
             axios
                 .post("api/wants", formData)
                 .then((res) => {
-                    console.log(res);
+                    // console.log(res);
+                    this.dialog = false;
                 })
                 .catch((err) => {
                     console.log(err);

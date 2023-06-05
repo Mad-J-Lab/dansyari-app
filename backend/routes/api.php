@@ -28,8 +28,8 @@ Route::put('/categories/{category}', 'CategoryController@update');
 Route::delete('/categories/{category}', 'CategoryController@destroy');
 
 
-Route::get('/categories/wants/{id}', 'WantController@category');
-Route::post('/wants', 'WantController@store');
+Route::get('/categories/wants/{id}', 'ItemController@category');
+Route::post('/wants', 'ItemController@store');
 
 Route::get('/rules','RuleController@index');
 Route::get('/categoryedit/{categoryId}','RuleController@category');

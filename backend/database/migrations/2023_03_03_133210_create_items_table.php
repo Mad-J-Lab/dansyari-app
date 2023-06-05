@@ -18,7 +18,6 @@
 						$table->increments('id');
 						$table->string('name')->nullable();
 						$table->bigInteger('category_id')->nullable()->unsigned();
-						$table->integer('is_unnecessary')->nullable();
 						$table->string('image_path')->nullable();
 						$table->integer('number')->nullable();
 						$table->string('category_name')->nullable();
@@ -26,6 +25,9 @@
 						$table->string('place')->nullable();
 						$table->string('purchase_from')->nullable();
 						$table->timestamps();
+						$table->boolean('want')->default(false);
+						$table->boolean('is_unnecessary')->default(false);
+
 						$table->foreign("category_id")->references("id")->on("categories");
 
 

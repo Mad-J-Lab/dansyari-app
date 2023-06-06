@@ -18,8 +18,8 @@ class ItemController extends Controller
     public function store(Request $request){
         $filePath = $request->item_image->store('public');
         $filePath = '/storage'.str_replace('public','',$filePath); 
-        // \Log::info($filePath);
-        // \Log::info($request->name);
+        \Log::info($filePath);
+        \Log::info($request->name);
 
         Item::create([
             'name' => $request->name,

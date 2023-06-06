@@ -2147,8 +2147,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/doyouneed').then(function (res) {
-        _this.items = res.data;
-        console.log(_this.items);
+        _this.items = res.data; // console.log(this.items);
       });
     },
     recordTime: function recordTime() {
@@ -2866,7 +2865,7 @@ var render = function render() {
     attrs: {
       cover: "",
       height: "250",
-      src: ""
+      src: _vm.selected_item.image_path
     }
   }), _vm._v(" "), _c("v-card-title", [_vm._v(_vm._s(_vm.selected_item.name))]), _vm._v(" "), _c("v-card-subtitle", [_c("span", {
     staticClass: "me-1"

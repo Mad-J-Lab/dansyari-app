@@ -19,7 +19,7 @@ class ItemsTableSeeder extends Seeder
             'amount'=>'3000',
             'place'=>'ラック',
             'purchase_from'=>'UNIQLO',
-            'image_path'=>'',
+            'image_path'=>'/storage/us6YYOgrKLmKac5srwHQ4CpaUWUjidsqxk2leuhl.jpg',
         ];
         DB::table('items')->insert($param);
         $param = [

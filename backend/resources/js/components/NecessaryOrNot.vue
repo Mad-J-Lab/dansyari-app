@@ -6,7 +6,7 @@
                     <v-progress-linear :active="isActive" color="deep-purple" height="4" indeterminate></v-progress-linear>
                 </template>
 
-                <v-img cover height="250" src=""></v-img>
+                <v-img cover height="250" :src="selected_item.image_path"></v-img>
 
                 <v-card-title>{{ selected_item.name }}</v-card-title>
 
@@ -60,7 +60,7 @@ export default {
             axios.get('/api/doyouneed')
                 .then((res) => {
                     this.items = res.data;
-                    console.log(this.items);
+                    // console.log(this.items);
                 });
         },
         recordTime() {

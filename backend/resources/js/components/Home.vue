@@ -57,7 +57,7 @@ export default {
     },
     methods: {
         getItems() {
-            axios.get('/api/doyouneed')
+            axios.get('/api/home')
                 .then((res) => {
                     this.items = res.data;
                     // console.log(this.items);
@@ -66,7 +66,7 @@ export default {
         recordTime() {
             console.log(this.items);
             console.log(this.selected_item);
-            axios.post('/api/doyouneed', {
+            axios.post('/api/home', {
                 item_id: this.selected_item.id
             }).then(() => {
                 this.n++;
@@ -75,7 +75,7 @@ export default {
             });
         },
         recordNull() {
-            axios.post('/api/doyouneed/null', {
+            axios.post('/api/home/null', {
                 item_id: this.selected_item.id
             }).then(() => {
                 this.n++;

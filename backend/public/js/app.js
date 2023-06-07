@@ -83092,7 +83092,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Rule_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Rule.vue */ "./resources/js/components/Rule.vue");
 /* harmony import */ var _components_CategoryEditComponent2_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/CategoryEditComponent2.vue */ "./resources/js/components/CategoryEditComponent2.vue");
 /* harmony import */ var _components_CategoryEditDetailComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CategoryEditDetailComponent.vue */ "./resources/js/components/CategoryEditDetailComponent.vue");
-/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
 
 
 
@@ -83113,6 +83113,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'want.list',
       component: _components_Want_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       props: true
+    }, {
+      path: '/home',
+      name: 'home',
+      component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+      children: [{
+        path: 'null',
+        name: 'home.null',
+        component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+        props: true
+      }]
     }]
   }, {
     path: '/rules',
@@ -83126,16 +83136,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: ':categoryId',
       name: 'category.edit.detail',
       component: _components_CategoryEditDetailComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-      props: true
-    }]
-  }, {
-    path: '/home',
-    name: 'home',
-    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    children: [{
-      path: 'null',
-      name: 'home.null',
-      component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
       props: true
     }]
   }]

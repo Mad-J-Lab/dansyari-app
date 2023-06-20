@@ -6,7 +6,7 @@
                     <v-progress-linear :active="isActive" color="deep-purple" height="4" indeterminate></v-progress-linear>
                 </template>
 
-                <v-img cover height="250" src=""></v-img>
+                <v-img cover height="250" :src="selected_item.image_path"></v-img>
 
                 <v-card-title>{{ selected_item.name }}</v-card-title>
 
@@ -48,7 +48,6 @@ export default {
         selection: 1,
         items: [],
         n: 0,
-        //nはitemsの数を超えない
     }),
     computed: {
         selected_item() {
@@ -57,28 +56,37 @@ export default {
     },
     methods: {
         getItems() {
-            axios.get('/api/doyouneed')
+            axios.get('/api/home')
                 .then((res) => {
                     this.items = res.data;
-                    console.log(this.items);
+                    // console.log(this.items);
                 });
         },
         recordTime() {
             console.log(this.items);
             console.log(this.selected_item);
-            axios.post('/api/doyouneed', {
+            axios.post('/api/home', {
                 item_id: this.selected_item.id
             }).then(() => {
-                this.n++;
+                if (this.n <= this.items.length) {
+                    this.n++;
+                } else {
+                    // nはitemの数を超えない
+                    console.log("error");
+                };
             }).catch((err) => {
                 console.log(err);
             });
         },
         recordNull() {
-            axios.post('/api/doyouneed/null', {
+            axios.post('/api/home/null', {
                 item_id: this.selected_item.id
             }).then(() => {
-                this.n++;
+                if (this.n <= this.items.length) {
+                    this.n++;
+                } else {
+                    console.log("error");
+                };
             }).catch((err) => {
                 console.log(err);
             });

@@ -5,7 +5,7 @@ import Want from './components/Want.vue';
 import Rule from './components/Rule.vue';
 import CategoryEdit from './components/CategoryEditComponent2.vue';
 import CategoryEditDetail from './components/CategoryEditDetailComponent.vue';
-import NecessaryOrNot from './components/NecessaryOrNot.vue';
+import Home from './components/Home.vue';
 
 
 Vue.use(VueRouter);
@@ -24,6 +24,19 @@ const router = new VueRouter({
                     component: Want,
                     props:true,
                 },
+                {
+                    path: '/home',
+                    name: 'home',
+                    component: Home,
+                    children:[
+                        {
+                            path: 'null',
+                            name: 'home.null',
+                            component: Home,
+                            props:true,
+                        },
+                    ]
+                },
             ]
         },
         {
@@ -40,19 +53,6 @@ const router = new VueRouter({
                     path: ':categoryId',
                     name: 'category.edit.detail',
                     component:CategoryEditDetail ,
-                    props:true,
-                },
-            ]
-        },
-        {
-            path: '/doyouneed',
-            name: 'doyouneed',
-            component: NecessaryOrNot,
-            children:[
-                {
-                    path: 'null',
-                    name: 'doyouneed.null',
-                    component: NecessaryOrNot,
                     props:true,
                 },
             ]

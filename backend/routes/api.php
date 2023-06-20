@@ -29,13 +29,14 @@ Route::delete('/categories/{category}', 'CategoryController@destroy');
 
 
 Route::get('/categories/wants/{id}', 'ItemController@category');
+Route::get('/categories/disuse/{id}', 'ItemController@disuseItems');
 Route::post('/wants', 'ItemController@store');
 
 Route::get('/rules','RuleController@index');
 Route::get('/categoryedit/{categoryId}','RuleController@category');
 Route::put('/categoryedit/rules/{rule}','RuleController@update');
 
-Route::get('/doyouneed','ItemUsageHistoryController@items');
+Route::get('/home','ItemUsageHistoryController@items');
 
-Route::post('/doyouneed','ItemUsageHistoryController@recordTime');
-Route::post('/doyouneed/null','ItemUsageHistoryController@recordNull');
+Route::post('/home','ItemUsageHistoryController@recordTime');
+Route::post('/home/null','ItemUsageHistoryController@recordNull');

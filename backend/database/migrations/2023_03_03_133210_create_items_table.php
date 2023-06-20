@@ -27,6 +27,7 @@
 						$table->timestamps();
 						$table->boolean('want')->default(false);
 						$table->boolean('is_unnecessary')->default(false);
+						$table->integer('disuse_month')->nullable();
 
 						$table->foreign("category_id")->references("id")->on("categories");
 

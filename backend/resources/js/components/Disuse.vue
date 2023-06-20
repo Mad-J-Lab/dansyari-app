@@ -73,12 +73,12 @@
 </template>
 
 <script>
-export default {
+export default{
     props: ['category'],
     data() {
         return {
-            wants: [],
-            want: {},
+            disuse_items: [],
+            selected_item: {},
             id: this.$route.params.id,
             dialog: false,
             fileInfo: '',
@@ -95,21 +95,6 @@ export default {
         fileSelected(event) {
             this.fileInfo = event.target.files[0]
         },
-        upload() {
-            const formData = new FormData()
-            formData.append('item_image', this.fileInfo)
-            formData.append('name', this.want.name)
-            formData.append('disuse_month', this.want.disuse_month)
-            axios
-                .post("api/wants", formData)
-                .then((res) => {
-                    // console.log(res);
-                    this.dialog = false;
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
     },
     mounted() {
         this.getWants();

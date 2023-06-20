@@ -48,7 +48,6 @@ export default {
         selection: 1,
         items: [],
         n: 0,
-        //nはitemsの数を超えない
     }),
     computed: {
         selected_item() {
@@ -69,7 +68,12 @@ export default {
             axios.post('/api/home', {
                 item_id: this.selected_item.id
             }).then(() => {
-                this.n++;
+                if (this.n <= this.items.length) {
+                    this.n++;
+                } else {
+                    // nはitemの数を超えない
+                    console.log("error");
+                };
             }).catch((err) => {
                 console.log(err);
             });
@@ -78,7 +82,11 @@ export default {
             axios.post('/api/home/null', {
                 item_id: this.selected_item.id
             }).then(() => {
-                this.n++;
+                if (this.n <= this.items.length) {
+                    this.n++;
+                } else {
+                    console.log("error");
+                };
             }).catch((err) => {
                 console.log(err);
             });

@@ -29,6 +29,7 @@ Route::delete('/categories/{category}', 'CategoryController@destroy');
 
 
 Route::get('/categories/wants/{id}', 'ItemController@category');
+Route::get('/categories/disuse/{id}', 'ItemController@disuseItems');
 Route::post('/wants', 'ItemController@store');
 
 Route::get('/rules','RuleController@index');

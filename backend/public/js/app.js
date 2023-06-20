@@ -2133,8 +2133,7 @@ __webpack_require__.r(__webpack_exports__);
       loading: false,
       selection: 1,
       items: [],
-      n: 0 //nはitemsの数を超えない
-
+      n: 0
     };
   },
   computed: {
@@ -2158,7 +2157,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/home', {
         item_id: this.selected_item.id
       }).then(function () {
-        _this2.n++;
+        if (_this2.n <= _this2.items.length) {
+          _this2.n++;
+        } else {
+          // nはitemの数を超えない
+          console.log("error");
+        }
+
+        ;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2169,7 +2175,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/home/null', {
         item_id: this.selected_item.id
       }).then(function () {
-        _this3.n++;
+        if (_this3.n <= _this3.items.length) {
+          _this3.n++;
+        } else {
+          console.log("error");
+        }
+
+        ;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2269,6 +2281,7 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('item_image', this.fileInfo);
       formData.append('name', this.want.name);
+      formData.append('disuse_month', this.want.disuse_month);
       axios.post("api/wants", formData).then(function (res) {
         // console.log(res);
         _this2.dialog = false;
@@ -3136,6 +3149,18 @@ var render = function render() {
         _vm.$set(_vm.want, "name", $$v);
       },
       expression: "want.name"
+    }
+  }), _vm._v(" "), _c("v-text-field", {
+    attrs: {
+      label: "非使用期間",
+      required: ""
+    },
+    model: {
+      value: _vm.want.disuse_month,
+      callback: function callback($$v) {
+        _vm.$set(_vm.want, "disuse_month", $$v);
+      },
+      expression: "want.disuse_month"
     }
   }), _vm._v(" "), _c("input", {
     attrs: {

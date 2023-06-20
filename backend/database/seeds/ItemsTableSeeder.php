@@ -19,6 +19,7 @@ class ItemsTableSeeder extends Seeder
             'amount'=>'3000',
             'place'=>'ラック',
             'purchase_from'=>'UNIQLO',
+            'disuse_month'=>1,
             'image_path'=>'/storage/us6YYOgrKLmKac5srwHQ4CpaUWUjidsqxk2leuhl.jpg',
         ];
         DB::table('items')->insert($param);
@@ -31,6 +32,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>2,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -42,6 +44,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>3,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -53,6 +56,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>4,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -64,6 +68,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>5,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -75,6 +80,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>1,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -86,6 +92,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>2,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -97,6 +104,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>3,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -108,6 +116,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>4,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -119,6 +128,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>5,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -130,6 +140,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>1,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -141,6 +152,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>2,
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -152,6 +164,7 @@ class ItemsTableSeeder extends Seeder
             'place'=>'test',
             'purchase_from'=>'test',
             'image_path'=>'',
+            'disuse_month'=>3,
         ];
         DB::table('items')->insert($param);
     }

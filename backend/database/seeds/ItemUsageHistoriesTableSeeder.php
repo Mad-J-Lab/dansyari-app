@@ -47,8 +47,33 @@ class ItemUsageHistoriesTableSeeder extends Seeder
         ];
         DB::table('item_usage_histories')->insert($param);
         $param = [
-            'item_id' => 1,
+            'item_id' => 8,
             'use_at' => date('Y-m-d H:i:s',strtotime("-17 day")),
+        ];
+        DB::table('item_usage_histories')->insert($param);
+        $param = [
+            'item_id' => 9,
+            'use_at' => date('Y-m-d H:i:s',strtotime("-40 day")),
+        ];
+        DB::table('item_usage_histories')->insert($param);
+        $param = [
+            'item_id' => 10,
+            'use_at' => date('Y-m-d H:i:s',strtotime("-30 day")),
+        ];
+        DB::table('item_usage_histories')->insert($param);
+        $param = [
+            'item_id' => 11,
+            'use_at' => date('Y-m-d H:i:s',strtotime("-20 day")),
+        ];
+        DB::table('item_usage_histories')->insert($param);
+        $param = [
+            'item_id' => 12,
+            'use_at' => date('Y-m-d H:i:s',strtotime("-50 day")),
+        ];
+        DB::table('item_usage_histories')->insert($param);
+        $param = [
+            'item_id' => 13,
+            'use_at' => date('Y-m-d H:i:s',strtotime("-60 day")),
         ];
         DB::table('item_usage_histories')->insert($param);
     }

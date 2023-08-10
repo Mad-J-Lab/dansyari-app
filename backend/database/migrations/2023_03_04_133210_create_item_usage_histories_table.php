@@ -19,7 +19,7 @@
 						$table->integer('item_id')->nullable()->unsigned();
 						$table->timestamp('use_at')->nullable();
                         $table->timestamps();
-						$table->foreign("item_id")->references("id")->on("items");
+						$table->foreign("item_id")->references("id")->on("items")->onDelete('cascade');
 
 						// ----------------------------------------------------
 						// -- SELECT [item_usage_histories]--

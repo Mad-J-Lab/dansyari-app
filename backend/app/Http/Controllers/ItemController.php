@@ -4,25 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Category;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
-    public function category($id){
-        $items=Item::where('category_id', $id)->get();
-        return $items;
-    }
-
-    public function disuseItems($id){
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    
+    public function disuseItems(Category $category){
         $items=Item::where([
-            ['category_id', $id],
-            ['is_unnecessary','true']
+            ['category_id', $category->id],
+            ['is_unnecessary',1]
             ])->get();
+            \Log::info($items);
         return $items;
     }
 
     public function index(){
-        return Item::get();
+        $items=Item::where([
+            ['category_id', $category->id],
+            ['is_unnecessary',0],
+            ['want',0],
+            ])->get();
+            \Log::info($items);
+        return $items;
     }
 
     public function store(Request $request){
@@ -44,6 +53,7 @@ class ItemController extends Controller
         }
 
         $item = new Item;
+        $item->user_id = Auth::user()->id;
         $item->name = $request->name;
         $item->image_path = $filePath;
         $item->category_id = 1;
@@ -54,6 +64,8 @@ class ItemController extends Controller
         return $item;
     }
 
-
-
+    public function destroy(Item $item){
+        //引数にモデルを渡すとルートパラメータには自動でプライマリキーが入る
+        $item->delete();
+    }
 }

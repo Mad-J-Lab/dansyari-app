@@ -44,9 +44,19 @@ class ItemUsageHistoryController extends Controller
             // dd($use_date);
             
             // \Log::info($date>$use_date);
+            
+            if($date>$use_date){
+                // いらないものへスイッチ
+                $item->is_unnecessary = true;
+                $item->save();
+                // $dateと$use_dateの比較　出力はtrue/false
+                return true;
+            }else{
+                $item->is_unnecessary = false;
+                $item->save();
+                return false;
+            }
 
-            // $dateと$use_dateの比較　出力はtrue/false
-            return $date>$use_date;
         });
 
         // ソート済みコレクションはオリジナル配列のキーを保持しますので、valuesメソッドにより、連続した数字のインデックスにするためリセットしています

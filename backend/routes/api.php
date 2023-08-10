@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WantController;
+use App\Item;
 
 
 /*
@@ -29,8 +30,17 @@ Route::delete('/categories/{category}', 'CategoryController@destroy');
 
 
 Route::get('/categories/wants/{id}', 'ItemController@category');
-Route::get('/categories/disuse/{id}', 'ItemController@disuseItems');
+// Route::get('/categories/disuse/{id}', 'ItemController@disuseItems');
+// storeに対して基本的に認可は必要ない
 Route::post('/wants', 'ItemController@store');
+// Route Groupを使用
+// Route::group(['middleware' => ['can:destroy,item']], function () {
+//     Route::post('/user/profile', 'UserProfileController@show'); //この中に書くルーティング全てに同じミドルウェアが適用。２つ以上APIがある時に使える
+// }
+// Route::delete('/items/{item}', 'ItemController@destroy')
+// ->middleware('can:userItem,item');
+
+
 
 Route::get('/rules','RuleController@index');
 Route::get('/categoryedit/{categoryId}','RuleController@category');

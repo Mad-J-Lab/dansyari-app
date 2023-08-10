@@ -2,7 +2,7 @@
     <div>
         <v-list-item-group class="d-flex flex-wrap">
             <!-- ブレークポイント設定 -->
-            <v-col v-for="disuse_item in disuse_items" :key="disuse_item.id" lg="3" md="4" sm="6" xs="12">
+            <v-col v-for="item in items" :key="item.id" lg="3" md="4" sm="6" xs="12">
                 <v-list-item class="with">
                     <v-list-item-content>
                         <v-card class="mx-auto" outlined>
@@ -13,18 +13,18 @@
                                     </div>
                                     <v-list-item-title class="text-h6 mb-1">
 
-                                        {{ disuse_item.name }}
+                                        {{ item.name }}
 
                                     </v-list-item-title>
                                     <v-list-item-subtitle></v-list-item-subtitle>
                                 </v-list-item-content>
 
-                                <v-list-item-avatar tile size="80" color="grey"><img :src="disuse_item.image_path" alt="">
+                                <v-list-item-avatar tile size="80" color="grey"><img :src="want.image_path" alt="">
                                 </v-list-item-avatar>
                             </v-list-item>
                             <v-card-actions>
-                                <v-btn outlined rounded text @click="deleteItem(disuse_item.id)">
-                                    削除
+                                <v-btn outlined rounded text>
+                                    Button
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
@@ -47,9 +47,9 @@
                         <v-container>
                             <v-row>
                                 <v-col cols="12">
-                                    <v-text-field v-model="disuse_item.name" label="アイテム名" required>
+                                    <v-text-field v-model="want.name" label="アイテム名" required>
                                     </v-text-field>
-                                    <v-text-field v-model="disuse_item.disuse_month" label="非使用期間" required>
+                                    <v-text-field v-model="want.disuse_month" label="非使用期間" required>
                                     </v-text-field>
                                     <input type="file" @change="fileSelected">
                                 </v-col>
@@ -61,9 +61,9 @@
                         <v-btn color="gray" text @click="dialog = false">
                             閉じる
                         </v-btn>
-                        <!-- <v-btn color="gray" text @click="upload">
+                        <v-btn color="gray" text @click="upload">
                             追加
-                        </v-btn> -->
+                        </v-btn>
                     </v-card-actions>
                 </form>
             </v-card>
@@ -77,8 +77,8 @@ export default {
     props: ['category'],
     data() {
         return {
-            disuse_items: [],
-            disuse_item: {},
+            items: [],
+            item: {},
             id: this.$route.params.id,
             dialog: false,
             fileInfo: '',
@@ -87,30 +87,38 @@ export default {
     },
     methods: {
         getItems() {
-            axios.get('api/categories/disuse/' + this.id)
+            axios.get('api/categories/items/' + this.id)
                 .then((res) => {
-                    this.disuse_items = res.data;
-                    console.log("got");
+                    this.items = res.data;
                 });
         },
         fileSelected(event) {
             this.fileInfo = event.target.files[0]
         },
-        deleteItem(id) {
-            axios.delete('api/items/' + id).then((res) => {
-                console.log(res);
-                this.disuse_items.splice(id, 1)
-            });
-        },
+        upload() {
+            const formData = new FormData()
+            formData.append('item_image', this.fileInfo)
+            formData.append('name', this.want.name)
+            formData.append('disuse_month', this.want.disuse_month)
+            axios
+                .post("api/wants", formData)
+                .then((res) => {
+                    // console.log(res);
+                    this.dialog = false;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     },
     mounted() {
         this.getItems();
     },
     beforeRouteUpdate(to, from, next) {
         const id = to.params.id;
-        axios.get('api/categories/disuse/' + id)
+        axios.get('api/categories/items/' + id)
             .then((res) => {
-                this.disuse_items = res.data;
+                this.items = res.data;
             });
         next()
     },

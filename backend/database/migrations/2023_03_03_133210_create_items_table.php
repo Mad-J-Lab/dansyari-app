@@ -18,6 +18,7 @@
 						$table->increments('id');
 						$table->string('name')->nullable();
 						$table->bigInteger('category_id')->nullable()->unsigned();
+                        $table->bigInteger('user_id')->unsigned();
 						$table->string('image_path')->nullable();
 						$table->integer('number')->nullable();
 						$table->string('category_name')->nullable();
@@ -30,7 +31,7 @@
 						$table->integer('disuse_month')->nullable();
 
 						$table->foreign("category_id")->references("id")->on("categories");
-
+						$table->foreign("user_id")->references("id")->on("users")->onDelete('cascade');
 
 
 						// ----------------------------------------------------

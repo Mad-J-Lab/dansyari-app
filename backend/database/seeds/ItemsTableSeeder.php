@@ -13,6 +13,7 @@ class ItemsTableSeeder extends Seeder
     {
         $param = [
             'name' => 'ミラノリブクルーネックセーター',
+            'user_id' => '1',
             'category_id'=>'1',
             'category_name'=>'ファッション',
             'number'=>'1',
@@ -25,6 +26,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ2',
+            'user_id' => '2',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -37,6 +39,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ3',
+            'user_id' => '1',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -49,6 +52,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ4',
+            'user_id' => '2',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -61,6 +65,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ5',
+            'user_id' => '1',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -73,6 +78,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ6',
+            'user_id' => '2',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -85,6 +91,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ7',
+            'user_id' => '1',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -97,6 +104,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ8',
+            'user_id' => '2',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -109,6 +117,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ9',
+            'user_id' => '1',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -121,6 +130,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ10',
+            'user_id' => '2',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -133,6 +143,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ11',
+            'user_id' => '1',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -145,6 +156,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ12',
+            'user_id' => '2',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
@@ -157,6 +169,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'name' => 'テストデータ13',
+            'user_id' => '1',
             'category_id'=>'2',
             'category_name'=>'日用品',
             'number'=>'1',
